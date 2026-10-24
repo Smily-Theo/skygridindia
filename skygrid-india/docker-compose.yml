@@ -1,0 +1,15 @@
+services:
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: sqlite:////app/data/skygrid.db
+      CORS_ORIGINS: http://localhost:8080,http://localhost:8000
+      SIM_TICK_SECONDS: "2"
+      MAX_SIMULATED_VEHICLES: "100"
+    ports:
+      - "8000:8000"
+    volumes:
+      - skygrid_data:/app/data
+    restart: unless-stopped
+volumes:
+  skygrid_data:
